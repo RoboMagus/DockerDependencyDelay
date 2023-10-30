@@ -47,11 +47,11 @@ if [ ! -z ${REQUIRED_CONTAINER_NAMES+x} ]; then
   echo "Checking container names: $REQUIRED_CONTAINER_NAMES"
   for ID in "${REQUIRED_CONTAINER_NAMES[@]}"; do
     # Default to 'healthy' if container does not support HealthChecks
-    HEALTH=$(docker inspect --format '{{json .State.Health.Status }}' $ID || echo "healthy")
+    HEALTH=$(docker inspect --format '{{json .State.Health.Status }}' $ID | tr -d '"' || echo "healthy")
     while [ "$HEALTH" != "healthy" ]; do
       echo "  $ID: $HEALTH"
       sleep $CHECK_INTERVAL
-      HEALTH=$(docker inspect --format '{{json .State.Health.Status }}' $ID || echo "healthy")
+      HEALTH=$(docker inspect --format '{{json .State.Health.Status }}' $ID | tr -d '"' || echo "healthy")
     done
     echo "  $ID up and $HEALTH"    
   done
