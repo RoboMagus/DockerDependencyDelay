@@ -28,7 +28,7 @@ fi
 if [ ! -z ${REQUIRED_FILES+x} ]; then
   IFS='|'
   REQUIRED_FILES=(${REQUIRED_FILES})
-  echo "Checking existing files / directories: $REQUIRED_FILES"
+  echo "Checking existing files / directories: ${REQUIRED_FILES[*]}"
   for FILE in "${REQUIRED_FILES[@]}"; do
     while [ ! -e "$FILE" ]; do
       echo "  $FILE does not exist"
@@ -44,7 +44,7 @@ fi
 if [ ! -z ${REQUIRED_CONTAINER_NAMES+x} ]; then
   IFS='|'
   REQUIRED_CONTAINER_NAMES=(${REQUIRED_CONTAINER_NAMES})
-  echo "Checking container names: $REQUIRED_CONTAINER_NAMES"
+  echo "Checking container names: ${REQUIRED_CONTAINER_NAMES[*]}"
   for ID in "${REQUIRED_CONTAINER_NAMES[@]}"; do
     # Default to 'healthy' if container does not support HealthChecks
     HEALTH=$(docker inspect --format '{{json .State.Health.Status }}' $ID | tr -d '"' || echo "healthy")
