@@ -1,5 +1,9 @@
-
 # Docker Depencency Delay
+<p align="left">
+  <a href="https://github.com/RoboMagus/DockerDependencyDelay"><img src="https://img.shields.io/badge/github-grey?logo=github" alt="Github URL"/></a>
+  <a href="https://hub.docker.com/r/robomagus/docker-dependency-delay"><img src="https://img.shields.io/badge/docker-hub-blue?logo=docker" alt="DockerHub URL"/></a>
+  <img src="https://img.shields.io/docker/image-size/robomagus/docker-dependency-delay/latest" alt="Docker Image Size"/>
+</p>
 
 A hacky Docker image that hijacks dockers healthcheck and `depends_on` mechanism to delay startup of _other_ containers. This enables injection of dependencies on non-container related requirements, such as system uptime or file presence.
 
